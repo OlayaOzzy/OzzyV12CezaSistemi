@@ -26,3 +26,5 @@ Ozzy#0521 (158288905244901376) Discord hesabıma ulaşabilirsiniz, eğer ulaşam
 
 
 ## Serendia Ailesine ve  ordan bu altyapıyı isteyen Sude'ye Sevgilerle <3 discord.gg/serendia
+![Serendia](standard_11.gif.gif)
+
