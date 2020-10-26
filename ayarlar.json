@@ -1,0 +1,14 @@
+{
+"sahip": ["sahipid1","isteğebaglısahipid2istersenizsilin"], 
+"token": "tokeniniz",
+"prefix": "prefix",
+"boosterrolu": "",
+"banhammer": "rolid",
+"jailhammer": "rolid",
+"mutehammer": "rolid",
+"yetkili": "rolid",
+"cezalog": "kanalid",
+"jailrolu": "rolid",
+"muterolu": "rolid",
+"unjailverilecekrol": "rolid"
+}
