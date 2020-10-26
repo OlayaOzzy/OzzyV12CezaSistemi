@@ -24,6 +24,9 @@ Hayır ne yazık ki yapmıyorum yine de beni ikna edebileceğinize inanıyorsan�
 
 Ozzy#0521 (158288905244901376) Discord hesabıma ulaşabilirsiniz, eğer ulaşamazsanız discord.gg/serendia'da sorun yol gösterirler .)
 
+### Bir hata buldum?
+
+Bana ulaşın, elimden geldiğince hızlı çözerim.
 
 ## Serendia Ailesine ve  ordan bu altyapıyı isteyen Sude'ye Sevgilerle <3 discord.gg/serendia
 ![Serendia](standard_11.gif)
