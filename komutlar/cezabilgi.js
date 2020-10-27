@@ -210,6 +210,7 @@ if(message.guild.members.cache.get(args[0]) || message.mentions.members.first() 
     let descript = `**CezaBilgi <@!${k}>\`(${k})\` Son Cezaları\n\n CezaNo / Tür / Sebep\n`
     for(i = x; i > (i - 10) && i > 0; i--){
     let ceza = await db.fetch(`Ceza_${i}_${guild.name}`)
+    if(!ceza || !ceza.cezalanan) continue;
     if(ceza.cezalanan != k) continue;
     let z = `● \`${ceza.no}\` / ${ceza.tur} / ${ceza.sebep}\n` 
     descript += z;
