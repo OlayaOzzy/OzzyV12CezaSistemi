@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const ayarlar = require('../ayarlar.json');
 let db = require("quick.db")
 module.exports = async(member) => {
+console.log(member)
   let muterolu = ayarlar.muterolu || "muterolid"
   let jailrolu = ayarlar.jailrolu || "jailroluid"
   let boostrolu = ayarlar.boosterrolu || "boosterroluid"
