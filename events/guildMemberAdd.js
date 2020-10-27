@@ -15,6 +15,6 @@ member.roles.cache.has(boostrolu) ? member.roles.set([boostrolu,jailrolu]) : mem
 }, 5000);
 }
 if(y) {
-member.roles.add(muteroluid).catch(err => console.log(err));
+member.roles.add(muterolu).catch(err => console.log(err));
 }
 };
