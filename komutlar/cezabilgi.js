@@ -67,6 +67,7 @@ let cezayiyenler = []
 
 for (i = x; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
+    if(!ceza || !ceza.cezalanan) continue;
     if(!cezayiyenler.includes(ceza.cezalanan)){
     cezayiyenler.push(ceza.cezalanan)
 }  
@@ -79,6 +80,8 @@ for(i = 0; i < i + 10 && i < cezayiyenler.length; i++){
     let sorgukisi = cezayiyenler[i]
     for (j = x; j > 0; j--) {
         let ceza = db.fetch(`Ceza_${j}_${guild.name}`)
+                if(!ceza || ceza.cezalanan) continue;
+
         if(ceza.cezalanan == sorgukisi) {
             db.add(`Index_${index}`, 1)
         }
@@ -147,6 +150,7 @@ if(sorgu == "topceza") {
     
     for (i = x; i > 0; i--) {
         let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
+        if(!ceza) continue;
         if(!cezalandıranlar.includes(ceza.cezalandiran)){
             cezalandıranlar.push(ceza.cezalandiran)
     }  
@@ -158,7 +162,10 @@ if(sorgu == "topceza") {
         
         let sorgukisi = cezalandıranlar[i]
         for (j = x; j > 0; j--) {
+
             let ceza = db.fetch(`Ceza_${j}_${guild.name}`)
+            if(!ceza || !ceza.cezalandiran) continue;
+
             if(ceza.cezalandiran == sorgukisi) {
                 db.add(`CIndex_${index}`, 1)
                 if(ceza.tur == "Ban")  db.add(`CBIndex_${index}`, 1);
