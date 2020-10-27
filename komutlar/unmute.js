@@ -42,6 +42,8 @@ for (i = cezano; i > 0; i--) {
     if(ceza.cezalanan == sorguid && ceza.tur == "Mute"){
         db.set(`Unmute_${i}_${guild.name}`,true)
         db.set(`Ceza_${i}_${guild.name}.bitistarihi`, moment(message.createdAt).format("lll"))
+        db.set(`Mutede_${guild.name}_${cezalandirilcak.id}`, false)
+
         break;
     }
   }
