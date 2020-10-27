@@ -67,7 +67,7 @@ let cezayiyenler = []
 
 for (i = x; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
-    if(!ceza || !ceza.cezalanan) continue;
+    if(!ceza) continue;
     if(!cezayiyenler.includes(ceza.cezalanan)){
     cezayiyenler.push(ceza.cezalanan)
 }  
