@@ -58,11 +58,15 @@ setTimeout(() => {
     let y = db.fetch(`Unmute_${cezano}_${guild.name}`)
     if(!y){
     db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, moment(x).format("lll")) 
+    db.set(`Mutede_${guild.name}_${cezalandirilcak.id}`, false)
+
     }   //evalle deneme yapıcam
 }, ms(zaman))
 
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
+db.set(`Mutede_${guild.name}_${cezalandirilcak.id}`, true)
+
 mlog.send(oziemb.setColor("RED").setDescription(`**${cezalandirilicak} chatte susturuldu!\n\n● Susturan Yetkili: ${executor}\n● Süre: ${sahtezaman}\n● Sebep: ${sebep}\n● CezaNo: \`${cezano}\`**`))
 message.channel.send(oziemb.setColor("#FF00FF").setDescription(`**${cezalandirilicak}, ${executor} tarafından ${sebep} sebebiyle ${sahtezaman} boyunca susturuldu!**`))
 
