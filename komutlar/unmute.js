@@ -40,7 +40,7 @@ mlog.send(oziemb.setDescription(`**${kisi} kullancısının susturması ${execut
 let cezano = db.fetch(`CezaNo_${guild.name}`);
 for (i = cezano; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
-    if(ceza.cezalanan == sorguid && ceza.tur == "Mute"){
+    if(ceza.cezalanan == kisi.id && ceza.tur == "Mute"){
         db.set(`Unmute_${i}_${guild.name}`,true)
         db.set(`Ceza_${i}_${guild.name}.bitistarihi`, moment(message.createdAt).format("lll"))
 
