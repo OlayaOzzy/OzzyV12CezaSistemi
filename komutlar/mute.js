@@ -66,7 +66,7 @@ setTimeout(() => {
 
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
-db.set(`Mutede_${guild.name}_${cezalandirilcak.id}`, true)
+db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, true)
 
 mlog.send(oziemb.setColor("RED").setDescription(`**${cezalandirilicak} chatte susturuldu!\n\n● Susturan Yetkili: ${executor}\n● Süre: ${sahtezaman}\n● Sebep: ${sebep}\n● CezaNo: \`${cezano}\`**`))
 message.channel.send(oziemb.setColor("#FF00FF").setDescription(`**${cezalandirilicak}, ${executor} tarafından ${sebep} sebebiyle ${sahtezaman} boyunca susturuldu!**`))
