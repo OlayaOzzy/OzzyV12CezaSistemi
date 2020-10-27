@@ -57,7 +57,7 @@ setTimeout(() => {
     cezalandirilicak.roles.remove(mrol).catch(err => console.log(err))
     let y = db.fetch(`Unmute_${cezano}_${guild.name}`)
     if(!y){
-    db.set(`Mutede_${guild.name}_${cezalandirilcak.id}`, false)
+    db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, false)
 
     db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, moment(x).format("lll")) 
 
