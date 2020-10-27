@@ -18,7 +18,7 @@ let cezarolu = osettings.jailhammer || "jailhammerroluid";
 let ujlog = osettings.cezalog || "logkanalı";
 let brol = osettings.boosterrolu || "boosterrolid";
 let ujrol = osettings.unjailverilecekrol || "unjailatıldıgındaverilecekrolid";
-ujlog = guild.channels.cache.get(ublog)
+ujlog = guild.channels.cache.get(ujlog)
 //
 let cezarolismi = guild.roles.cache.get(cezarolu).name
 let ujrolismi = guild.roles.cache.get(ujrol).name
