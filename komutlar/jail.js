@@ -53,6 +53,7 @@ if(bot.roles.highest.position <= cezalandirilicak.roles.highest.position) {
 }
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
+db.set(`Hapiste_${guild.name}_${cezalandirilcak.id}`, true)
 const cezatarih = moment(message.createdAt).format("lll")
 message.channel.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle hapishaneye yollandı!**`).setColor("GREEN"))
 jlog.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle ${cezatarih} tarihinde hapishaneye yollandı! \`CezaNo: ${cezano}\`**`).setColor("GREEN"))
