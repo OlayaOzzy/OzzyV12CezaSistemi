@@ -1,7 +1,7 @@
 // Bu bot Ozzy tarafından 24.10.2020 Tarihinde Serendiadaki herkes ve Sude için geliştirilmiştir.
 // İçindeki kodları Dilediğiniz gibi kullanabilirsiniz.
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({fetchAllMembers: true});
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
 const moment = require('moment');
