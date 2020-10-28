@@ -14,7 +14,6 @@ let mrol = osettings.muterolu || "muterolüid"
 let cezarolismi = message.guild.roles.cache.get(cezarolu)
 
 //Hehe burdan sonrası Ozzynin Büyüsü
-moment.locale("tr")
 let oziemb = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({dynamic: true}))
     .setFooter("Ozzy ❤️ Serendia", executor.user.displayAvatarURL({dynamic: true}))
@@ -49,7 +48,8 @@ zaman = zaman.replace("saniye","s").replace("dakika","m").replace("saat","h").re
 if(!ms(zaman)) {
     return message.channel.send(oziemb.setDescription(`**Lütfen doğru biçimde zaman ve sebep belirtin. Örnek: \`mute @Ozzy 1sn/1dk/1sa/1g küfür\`.**`).setColor("RED")).then(x => x.delete({timeout:6500}));
 }
-
+let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
+moment.locale("tr")
 let cezatarih = moment(message.createdAt).format("lll")
 cezalandirilicak.roles.add(mrol).catch(err => console.log(err))
 x = ms(zaman) + message.createdAt
@@ -58,13 +58,13 @@ setTimeout(() => {
     let y = db.fetch(`Unmute_${cezano}_${guild.name}`)
     if(!y){
     db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, false)
-
-    db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, moment(x).format("lll")) 
+    let dateur = ms(zaman) + message.createdAt
+    let tarih = moment(dateur).format("lll")
+    db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, tarih) 
 
     }   //evalle deneme yapıcam
 }, ms(zaman))
 
-let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
 db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, true)
 
