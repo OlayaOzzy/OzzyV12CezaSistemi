@@ -6,7 +6,7 @@ const osettings = require("../ayarlar.json")
 module.exports.run = async(client,message,args) => {
 const guild = message.guild;
 const executor = message.member;
-moment.locale("tr") // Türkiye bura
+ // Türkiye bura
 //Embed
 let oziemb = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({dynamic: true}))
@@ -31,18 +31,18 @@ if(!kisi) {
 if(!kisi.roles.cache.has(mrol)) {
     return message.channel.send(oziemb.setDescription(`**Bu kişi zaten susturulu değil!**`).setColor("RED")).then(x => x.delete({timeout:6500}));
 }
+moment.locale("tr")
 let tarih = moment(message.createdAt).format("lll")
 kisi.roles.remove(mrol);
 message.channel.send(oziemb.setDescription(`**${kisi} kullancısının susturulması başarıyla açıldı.**`).setColor("GREEN"));
 mlog.send(oziemb.setDescription(`**${kisi} kullancısının susturması ${executor} tarafından başarıyla kaldırıldı.\nTarih: ${tarih}**`).setColor("GREEN"));
         db.set(`Mutede_${guild.name}_${kisi.id}`, false)
-
 let cezano = db.fetch(`CezaNo_${guild.name}`);
 for (i = cezano; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
     if(ceza.cezalanan == kisi.id && ceza.tur == "Mute"){
         db.set(`Unmute_${i}_${guild.name}`,true)
-        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, moment(message.createdAt).format("lll"))
+        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, tarih)
 
         break;
     }
