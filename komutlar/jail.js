@@ -9,7 +9,6 @@ module.exports.run = async(client,message,args) => {
     const guild = message.member.guild
     let executor = message.member
     //Embed açalım bitane
-    moment.locale("tr")
     let oziemb = new Discord.MessageEmbed()
         .setAuthor(guild.name, guild.iconURL({dynamic: true}))
         .setFooter("Ozzy ❤️ Serendia", executor.user.displayAvatarURL({dynamic: true}))
@@ -54,6 +53,7 @@ if(bot.roles.highest.position <= cezalandirilicak.roles.highest.position) {
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
 db.set(`Hapiste_${guild.name}_${cezalandirilicak.id}`, true)
+    moment.locale("tr")
 const cezatarih = moment(message.createdAt).format("lll")
 message.channel.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle hapishaneye yollandı!**`).setColor("GREEN"))
 jlog.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle ${cezatarih} tarihinde hapishaneye yollandı! \`CezaNo: ${cezano}\`**`).setColor("GREEN"))
