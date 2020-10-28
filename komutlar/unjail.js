@@ -6,7 +6,7 @@ const osettings = require("../ayarlar.json")
 module.exports.run = async(client,message,args) => {
 const guild = message.guild;
 const executor = message.member;
-moment.locale("tr") // Türkiye bura
+// Türkiye bura
 //Embed
 let oziemb = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({dynamic: true}))
@@ -37,12 +37,14 @@ kisi.roles.cache.has(brol) ? kisi.roles.set([brol,ujrol]) : kisi.roles.set([ujro
 message.channel.send(oziemb.setDescription(`**${kisi} kullancısı başarıyla hapisten çıkartıldı ve ${ujrolismi} ismi verildi.**`).setColor("GREEN"));
 ujlog.send(oziemb.setDescription(`**${kisi} kullancısının cezası ${executor} tarafından başarıyla kaldırıldı.\nTarih: ${tarih}**`).setColor("GREEN"));
 //Bitiş süresini ekleyelimmm
+moment.locale("tr") 
+let an = moment(message.createdAt).format("lll");
 let cezano = db.fetch(`CezaNo_${guild.name}`);
 db.set(`Hapiste_${guild.name}_${kisi.id}`, false)
 for (i = cezano; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
     if(ceza.cezalanan == kisi.id && ceza.tur == "Jail"){
-        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, moment(message.createdAt).format("lll"))
+        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, an)
         break;
     }
   }
