@@ -79,7 +79,7 @@ for(i = 0; i < i + 10 && i < cezayiyenler.length; i++){
     let sorgukisi = cezayiyenler[i]
     for (j = x; j > 0; j--) {
         let ceza = db.fetch(`Ceza_${j}_${guild.name}`)
-                if(!ceza || ceza.cezalanan) continue;
+                if(!ceza || !ceza.cezalanan) continue;
 
         if(ceza.cezalanan == sorgukisi) {
             db.add(`Index_${index}`, 1)
