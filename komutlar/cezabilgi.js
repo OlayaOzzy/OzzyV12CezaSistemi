@@ -142,8 +142,11 @@ let aylartoplam = {
 let aylar = aylartoplam;
 let bs = ceza.baslamatarihi;
 let fs = ceza.bitistarihi;
-if(!isNaN(fs)){
-    let cezabit = moment(fs).format("DD") + " " + aylar[moment(fs).format("MM")] + " " + moment(fs).format("YYYY HH:mm:ss") 
+let cezabit;
+if(isNaN(fs)){
+    cezabit = fs;
+} else {
+    cezabit = moment(fs).format("DD") + " " + aylar[moment(fs).format("MM")] + " " + moment(fs).format("YYYY HH:mm:ss") 
 }
 let cezabas = moment(bs).format("DD") + " " + aylar[moment(bs).format("MM")] + " " + moment(bs).format("YYYY HH:mm:ss") 
 
