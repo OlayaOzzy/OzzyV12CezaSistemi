@@ -51,13 +51,20 @@ if(!ms(zaman)) {
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 
 cezalandirilicak.roles.add(mrol).catch(err => console.log(err))
-x = ms(zaman) + message.createdAt
 setTimeout(() => {
+    
     cezalandirilicak.roles.remove(mrol).catch(err => console.log(err))
     let y = db.fetch(`Unmute_${cezano}_${guild.name}`)
     if(!y){
+    cezano = db.fetch(`CezaNo_${guild.name}`)
     db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, false)
-    db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, Date.now()) 
+    for (i = cezano; i > 0; i--) {
+        let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
+        if(ceza.cezalanan == kisi.id && ceza.tur == "Mute"){
+            db.set(`Ceza_${i}_${guild.name}.bitistarihi`, Date.now())    
+            break;
+        }
+      }
 
     }   //evalle deneme yapıcam
 }, ms(zaman))
