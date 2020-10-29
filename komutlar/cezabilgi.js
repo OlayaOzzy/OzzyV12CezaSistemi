@@ -142,8 +142,10 @@ let aylartoplam = {
 let aylar = aylartoplam;
 let bs = ceza.baslamatarihi;
 let fs = ceza.bitistarihi;
+if(!isNaN(fs)){
+    let cezabit = moment(fs).format("DD") + " " + aylar[moment(fs).format("MM")] + " " + moment(fs).format("YYYY HH:mm:ss") 
+}
 let cezabas = moment(bs).format("DD") + " " + aylar[moment(bs).format("MM")] + " " + moment(bs).format("YYYY HH:mm:ss") 
-let cezabit = moment(fs).format("DD") + " " + aylar[moment(fs).format("MM")] + " " + moment(fs).format("YYYY HH:mm:ss") 
 
 return message.channel.send(oziemb
     .setDescription(`**Cezabilgi ${args[0]} Bilgilendirmesi
