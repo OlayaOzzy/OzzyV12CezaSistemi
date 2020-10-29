@@ -9,7 +9,6 @@ const guild = message.member.guild
 let executor = message.member
 let cezalar = [];
 
-moment.locale("tr")
 //Embed açalım bitane
 let oziemb = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({dynamic: true}))
@@ -126,10 +125,26 @@ let kisi2 = await client.users.fetch(ceza.cezalandiran).catch(err => console.log
 let kisibilgi2;
 if(kisi2 != `\`Bulunamayan Üye/Bot Sahibi\`` && kisi2.username) kisibilgi2 = `${kisi2.username}(${kisi2.id})`; else console.log(kisi2.username);
 if(!kisibilgi2) kisibilgi2 = "Bilinmiyor"
-if(!ceza.baslamatarihi) {
-    ceza.bitistarihi = ceza.tarih
-    ceza.baslamatarihi = ceza.tarih
-}
+let aylartoplam = {
+    "01": "Ocak",
+    "02": "Şubat",
+    "03": "Mart",
+    "04": "Nisan",
+    "05": "Mayıs",
+    "06": "Haziran",
+    "07": "Temmuz",
+    "08": "Ağustos",
+    "09": "Eylül",
+    "10": "Ekim",
+    "11": "Kasım",
+    "12": "Aralık"
+  };
+let aylar = aylartoplam;
+let bs = ceza.baslamatarihi;
+let fs = ceza.bitistarihi;
+let cezabas = moment(bs).format("DD") + " " + aylar[moment(bs).format("MM")] + " " + moment(bs).format("YYYY HH:mm:ss") 
+let cezabit = moment(fs).format("DD") + " " + aylar[moment(fs).format("MM")] + " " + moment(fs).format("YYYY HH:mm:ss") 
+
 return message.channel.send(oziemb
     .setDescription(`**Cezabilgi ${args[0]} Bilgilendirmesi
 
@@ -139,8 +154,8 @@ return message.channel.send(oziemb
 ● Cezalanan Kişi Bilgisi: \`${kisibilgi2}\`\n
 ● Türü: ${ceza.tur}
 ● Sebebi: ${ceza.sebep} 
-● Başlangıç Tarihi: \`${ceza.baslamatarihi}\`
-● Bitiş Tarihi: \`${ceza.bitistarihi}\`**`)
+● Başlangıç Tarihi: \`${cezabas}\`
+● Bitiş Tarihi: \`${cezabit}\`**`)
     .setColor("#1A5BE3"));
 }
 

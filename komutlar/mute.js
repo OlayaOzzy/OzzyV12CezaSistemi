@@ -49,8 +49,7 @@ if(!ms(zaman)) {
     return message.channel.send(oziemb.setDescription(`**Lütfen doğru biçimde zaman ve sebep belirtin. Örnek: \`mute @Ozzy 1sn/1dk/1sa/1g küfür\`.**`).setColor("RED")).then(x => x.delete({timeout:6500}));
 }
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
-moment.locale("tr")
-let cezatarih = moment(message.createdAt).format("lll")
+
 cezalandirilicak.roles.add(mrol).catch(err => console.log(err))
 x = ms(zaman) + message.createdAt
 setTimeout(() => {
@@ -58,9 +57,7 @@ setTimeout(() => {
     let y = db.fetch(`Unmute_${cezano}_${guild.name}`)
     if(!y){
     db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, false)
-    let dateur = ms(zaman) + message.createdAt
-    let tarih = moment(dateur).format("lll")
-    db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, tarih) 
+    db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, Date.now()) 
 
     }   //evalle deneme yapıcam
 }, ms(zaman))
@@ -76,7 +73,7 @@ let ceza = {
     no: cezano,
     tur: "Mute", 
     sebep: sebep,
-    baslamatarihi: cezatarih,
+    baslamatarihi: Date.now(),
     bitistarihi:  "Hala Susturulu",
     cezalandiran: executor.id,
     cezalanan: cezalandirilicak.id

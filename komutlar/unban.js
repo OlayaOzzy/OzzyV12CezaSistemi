@@ -45,7 +45,7 @@ let cezano = db.fetch(`CezaNo_${guild.name}`);
 for (i = cezano; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
     if(ceza.cezalanan == sorguid && ceza.tur == "Ban"){
-        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, moment(message.createdAt).format("lll"))
+        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, Date.now())
         break;
     }
   }

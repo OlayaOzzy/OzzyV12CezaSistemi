@@ -53,8 +53,7 @@ if(bot.roles.highest.position <= cezalandirilicak.roles.highest.position) {
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
 db.set(`Hapiste_${guild.name}_${cezalandirilicak.id}`, true)
-    moment.locale("tr")
-const cezatarih = moment(message.createdAt).format("lll")
+
 message.channel.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle hapishaneye yollandı!**`).setColor("GREEN"))
 jlog.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle ${cezatarih} tarihinde hapishaneye yollandı! \`CezaNo: ${cezano}\`**`).setColor("GREEN"))
 booster ? cezalandirilicak.roles.set([boosterrolu, jailrolu]) : cezalandirilicak.roles.set([jailrolu])
@@ -65,7 +64,7 @@ let ceza = {
     no: cezano,
     tur: "Jail", 
     sebep: sebep,
-    baslamatarihi: cezatarih,
+    baslamatarihi: Date.now(),
     bitistarihi: "Hala Hapiste",
     cezalandiran: executor.id,
     cezalanan: cezalandirilicak.id

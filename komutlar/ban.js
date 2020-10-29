@@ -42,8 +42,7 @@ if(!cezalandirilicak.bannable) {
 let sebep = args.splice(1).join(" ")
 if(!sebep) sebep = "Belirtilmemiş."
 // Tarihi Alalım
-moment.locale("tr")
-let cezatarih = moment(message.createdAt).format("lll");
+
 let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
 cezalandirilicak.send(oziemb.setDescription(`**${guild.name} sunucusundan \`${sebep}\` nedeniyle yasaklandın!**`).setColor("RED")).catch(err => console.log(err));
@@ -53,7 +52,7 @@ let ceza = {
     no: cezano,
     tur: "Ban", 
     sebep: sebep,
-    baslamatarihi: cezatarih,
+    baslamatarihi: Date.now(),
     bitistarihi: "Hala Yasaklı",
     cezalandiran: executor.id,
     cezalanan: cezalandirilicak.id
