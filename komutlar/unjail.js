@@ -35,7 +35,7 @@ let tarih = moment(message.createdAt).format("lll")
 kisi.roles.cache.has(brol) ? kisi.roles.set([brol,ujrol]) : kisi.roles.set([ujrol]);
 //Hapis açmayla ilgili mesajlarr
 message.channel.send(oziemb.setDescription(`**${kisi} kullancısı başarıyla hapisten çıkartıldı ve ${ujrolismi} ismi verildi.**`).setColor("GREEN"));
-ujlog.send(oziemb.setDescription(`**${kisi} kullancısının cezası ${executor} tarafından başarıyla kaldırıldı.\nTarih: ${tarih}**`).setColor("GREEN"));
+ujlog.send(oziemb.setDescription(`**${kisi} kullancısının cezası ${executor} tarafından başarıyla kaldırıldı.\nT**`).setColor("GREEN"));
 //Bitiş süresini ekleyelimmm
 
 let cezano = db.fetch(`CezaNo_${guild.name}`);

@@ -40,7 +40,7 @@ try {
 }
 let tarih = moment(message.createdAt).format("lll")
 message.channel.send(oziemb.setDescription(`**${kisi} kullancısının yasaklaması başarıyla kaldırıldı.**`).setColor("GREEN"));
-ublog.send(oziemb.setDescription(`**${kisi} kullancısının yasaklaması ${executor} tarafından başarıyla kaldırıldı.\nTarih: ${tarih}**`).setColor("GREEN"));
+ublog.send(oziemb.setDescription(`**${kisi} kullancısının yasaklaması ${executor} tarafından başarıyla kaldırıldı.**`).setColor("GREEN"));
 let cezano = db.fetch(`CezaNo_${guild.name}`);
 for (i = cezano; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)

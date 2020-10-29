@@ -34,11 +34,13 @@ if(!kisi.roles.cache.has(mrol)) {
 
 kisi.roles.remove(mrol);
 message.channel.send(oziemb.setDescription(`**${kisi} kullancısının susturulması başarıyla açıldı.**`).setColor("GREEN"));
-mlog.send(oziemb.setDescription(`**${kisi} kullancısının susturması ${executor} tarafından başarıyla kaldırıldı.\nTarih: ${tarih}**`).setColor("GREEN"));
+mlog.send(oziemb.setDescription(`**${kisi} kullancısının susturması ${executor} tarafından başarıyla kaldırıldı.**`).setColor("GREEN"));
         db.set(`Mutede_${guild.name}_${kisi.id}`, false)
 let cezano = db.fetch(`CezaNo_${guild.name}`);
 for (i = cezano; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
+    console.log(ceza.cezalanan)
+    console.log(ceza.tur)
     if(ceza.cezalanan == kisi.id && ceza.tur == "Mute"){
         db.set(`Unmute_${i}_${guild.name}`,true)
         db.set(`Ceza_${i}_${guild.name}.bitistarihi`, Date.now())
