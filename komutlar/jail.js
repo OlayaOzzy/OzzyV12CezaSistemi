@@ -55,7 +55,7 @@ db.add(`CezaNo_${guild.name}`, 1)
 db.set(`Hapiste_${guild.name}_${cezalandirilicak.id}`, true)
 
 message.channel.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle hapishaneye yollandı!**`).setColor("GREEN"))
-jlog.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle ${cezatarih} tarihinde hapishaneye yollandı! \`CezaNo: ${cezano}\`**`).setColor("GREEN"))
+jlog.send(oziemb.setDescription(`**${cezalandirilicak}, ${executor} tarafından \`${sebep}\` nedeniyle hapishaneye yollandı! \`CezaNo: ${cezano}\`**`).setColor("GREEN"))
 booster ? cezalandirilicak.roles.set([boosterrolu, jailrolu]) : cezalandirilicak.roles.set([jailrolu])
 
 
