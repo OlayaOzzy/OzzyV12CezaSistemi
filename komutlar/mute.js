@@ -14,7 +14,6 @@ let mrol = osettings.muterolu || "muterolüid"
 let cezarolismi = message.guild.roles.cache.get(cezarolu)
 
 //Hehe burdan sonrası Ozzynin Büyüsü
-moment.locale("tr")
 let oziemb = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({dynamic: true}))
     .setFooter("Ozzy ❤️ Serendia", executor.user.displayAvatarURL({dynamic: true}))
@@ -49,20 +48,30 @@ zaman = zaman.replace("saniye","s").replace("dakika","m").replace("saat","h").re
 if(!ms(zaman)) {
     return message.channel.send(oziemb.setDescription(`**Lütfen doğru biçimde zaman ve sebep belirtin. Örnek: \`mute @Ozzy 1sn/1dk/1sa/1g küfür\`.**`).setColor("RED")).then(x => x.delete({timeout:6500}));
 }
+let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 
-let cezatarih = moment(message.createdAt).format("lll")
 cezalandirilicak.roles.add(mrol).catch(err => console.log(err))
-x = ms(zaman) + message.createdAt
 setTimeout(() => {
+    
     cezalandirilicak.roles.remove(mrol).catch(err => console.log(err))
     let y = db.fetch(`Unmute_${cezano}_${guild.name}`)
     if(!y){
-    db.set(`Ceza_${cezano}_${guild.name}.bitistarihi`, moment(x).format("lll")) 
+    cezano = db.fetch(`CezaNo_${guild.name}`)
+    db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, false)
+    for (i = cezano; i > 0; i--) {
+        let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
+        if(ceza.cezalanan == kisi.id && ceza.tur == "Mute"){
+            db.set(`Ceza_${i}_${guild.name}.bitistarihi`, Date.now())    
+            break;
+        }
+      }
+
     }   //evalle deneme yapıcam
 }, ms(zaman))
 
-let cezano = db.fetch(`CezaNo_${guild.name}`) + 1;
 db.add(`CezaNo_${guild.name}`, 1)
+db.set(`Mutede_${guild.name}_${cezalandirilicak.id}`, true)
+
 mlog.send(oziemb.setColor("RED").setDescription(`**${cezalandirilicak} chatte susturuldu!\n\n● Susturan Yetkili: ${executor}\n● Süre: ${sahtezaman}\n● Sebep: ${sebep}\n● CezaNo: \`${cezano}\`**`))
 message.channel.send(oziemb.setColor("#FF00FF").setDescription(`**${cezalandirilicak}, ${executor} tarafından ${sebep} sebebiyle ${sahtezaman} boyunca susturuldu!**`))
 
@@ -71,7 +80,7 @@ let ceza = {
     no: cezano,
     tur: "Mute", 
     sebep: sebep,
-    baslamatarihi: cezatarih,
+    baslamatarihi: Date.now(),
     bitistarihi:  "Hala Susturulu",
     cezalandiran: executor.id,
     cezalanan: cezalandirilicak.id

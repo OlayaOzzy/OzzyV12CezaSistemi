@@ -40,12 +40,12 @@ try {
 }
 let tarih = moment(message.createdAt).format("lll")
 message.channel.send(oziemb.setDescription(`**${kisi} kullancısının yasaklaması başarıyla kaldırıldı.**`).setColor("GREEN"));
-ublog.send(oziemb.setDescription(`**${kisi} kullancısının yasaklaması ${executor} tarafından başarıyla kaldırıldı.\nTarih: ${tarih}**`).setColor("GREEN"));
+ublog.send(oziemb.setDescription(`**${kisi} kullancısının yasaklaması ${executor} tarafından başarıyla kaldırıldı.**`).setColor("GREEN"));
 let cezano = db.fetch(`CezaNo_${guild.name}`);
 for (i = cezano; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
     if(ceza.cezalanan == sorguid && ceza.tur == "Ban"){
-        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, moment(message.createdAt).format("lll"))
+        db.set(`Ceza_${i}_${guild.name}.bitistarihi`, Date.now())
         break;
     }
   }

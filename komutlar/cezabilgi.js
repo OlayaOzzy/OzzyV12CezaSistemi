@@ -9,7 +9,6 @@ const guild = message.member.guild
 let executor = message.member
 let cezalar = [];
 
-moment.locale("tr")
 //Embed açalım bitane
 let oziemb = new Discord.MessageEmbed()
     .setAuthor(guild.name, guild.iconURL({dynamic: true}))
@@ -67,6 +66,7 @@ let cezayiyenler = []
 
 for (i = x; i > 0; i--) {
     let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
+    if(!ceza) continue;
     if(!cezayiyenler.includes(ceza.cezalanan)){
     cezayiyenler.push(ceza.cezalanan)
 }  
@@ -79,6 +79,8 @@ for(i = 0; i < i + 10 && i < cezayiyenler.length; i++){
     let sorgukisi = cezayiyenler[i]
     for (j = x; j > 0; j--) {
         let ceza = db.fetch(`Ceza_${j}_${guild.name}`)
+                if(!ceza || !ceza.cezalanan) continue;
+
         if(ceza.cezalanan == sorgukisi) {
             db.add(`Index_${index}`, 1)
         }
@@ -123,10 +125,31 @@ let kisi2 = await client.users.fetch(ceza.cezalandiran).catch(err => console.log
 let kisibilgi2;
 if(kisi2 != `\`Bulunamayan Üye/Bot Sahibi\`` && kisi2.username) kisibilgi2 = `${kisi2.username}(${kisi2.id})`; else console.log(kisi2.username);
 if(!kisibilgi2) kisibilgi2 = "Bilinmiyor"
-if(!ceza.baslamatarihi) {
-    ceza.bitistarihi = ceza.tarih
-    ceza.baslamatarihi = ceza.tarih
+let aylartoplam = {
+    "01": "Ocak",
+    "02": "Şubat",
+    "03": "Mart",
+    "04": "Nisan",
+    "05": "Mayıs",
+    "06": "Haziran",
+    "07": "Temmuz",
+    "08": "Ağustos",
+    "09": "Eylül",
+    "10": "Ekim",
+    "11": "Kasım",
+    "12": "Aralık"
+  };
+let aylar = aylartoplam;
+let bs = ceza.baslamatarihi;
+let fs = ceza.bitistarihi;
+let cezabit;
+if(isNaN(fs)){
+    cezabit = fs;
+} else {
+    cezabit = moment(fs).format("DD") + " " + aylar[moment(fs).format("MM")] + " " + moment(fs).format("YYYY HH:mm:ss") 
 }
+let cezabas = moment(bs).format("DD") + " " + aylar[moment(bs).format("MM")] + " " + moment(bs).format("YYYY HH:mm:ss") 
+
 return message.channel.send(oziemb
     .setDescription(`**Cezabilgi ${args[0]} Bilgilendirmesi
 
@@ -136,8 +159,8 @@ return message.channel.send(oziemb
 ● Cezalanan Kişi Bilgisi: \`${kisibilgi2}\`\n
 ● Türü: ${ceza.tur}
 ● Sebebi: ${ceza.sebep} 
-● Başlangıç Tarihi: \`${ceza.baslamatarihi}\`
-● Bitiş Tarihi: \`${ceza.bitistarihi}\`**`)
+● Başlangıç Tarihi: \`${cezabas}\`
+● Bitiş Tarihi: \`${cezabit}\`**`)
     .setColor("#1A5BE3"));
 }
 
@@ -147,6 +170,7 @@ if(sorgu == "topceza") {
     
     for (i = x; i > 0; i--) {
         let ceza = db.fetch(`Ceza_${i}_${guild.name}`)
+        if(!ceza) continue;
         if(!cezalandıranlar.includes(ceza.cezalandiran)){
             cezalandıranlar.push(ceza.cezalandiran)
     }  
@@ -158,7 +182,10 @@ if(sorgu == "topceza") {
         
         let sorgukisi = cezalandıranlar[i]
         for (j = x; j > 0; j--) {
+
             let ceza = db.fetch(`Ceza_${j}_${guild.name}`)
+            if(!ceza || !ceza.cezalandiran) continue;
+
             if(ceza.cezalandiran == sorgukisi) {
                 db.add(`CIndex_${index}`, 1)
                 if(ceza.tur == "Ban")  db.add(`CBIndex_${index}`, 1);
@@ -210,6 +237,7 @@ if(message.guild.members.cache.get(args[0]) || message.mentions.members.first() 
     let descript = `**CezaBilgi <@!${k}>\`(${k})\` Son Cezaları\n\n CezaNo / Tür / Sebep\n`
     for(i = x; i > (i - 10) && i > 0; i--){
     let ceza = await db.fetch(`Ceza_${i}_${guild.name}`)
+    if(!ceza || !ceza.cezalanan) continue;
     if(ceza.cezalanan != k) continue;
     let z = `● \`${ceza.no}\` / ${ceza.tur} / ${ceza.sebep}\n` 
     descript += z;
